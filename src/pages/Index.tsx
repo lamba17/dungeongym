@@ -7,6 +7,7 @@ import MembershipSection from "@/components/MembershipSection";
 import OutdoorSection from "@/components/OutdoorSection";
 import TransformationSection from "@/components/TransformationSection";
 import AttendanceSection from "@/components/AttendanceSection";
+import ReviewsSection from "@/components/ReviewsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
@@ -23,6 +24,7 @@ const Index = () => {
       <OutdoorSection />
       <TransformationSection />
       <AttendanceSection />
+      <ReviewsSection />
       <ContactSection />
       <Footer />
       <FloatingButtons />
