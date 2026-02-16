@@ -38,9 +38,9 @@ const FounderSection = () => {
             </div>
             <div className="flex-1 red-border-glow overflow-hidden">
               <img
-                src={founderAction}
+
                 alt="Akash Lamba - Training action shot"
-                className="w-full h-80 lg:h-[500px] object-cover" />
+                className="w-full h-80 lg:h-[500px] object-cover" src="/lovable-uploads/53282d83-c03f-47a5-835f-7fddf3360adf.png" />
 
             </div>
           </motion.div>
