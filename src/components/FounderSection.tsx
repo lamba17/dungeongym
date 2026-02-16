@@ -36,13 +36,13 @@ const FounderSection = () => {
                 className="w-full h-80 lg:h-[500px] object-cover" src="/lovable-uploads/f4831424-e81a-4716-a96a-6902caceef03.png" />
 
             </div>
-            <div className="flex-1 red-border-glow overflow-hidden">
-              
+            
 
 
 
 
-            </div>
+
+
           </motion.div>
 
           <motion.div
