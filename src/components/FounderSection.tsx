@@ -50,8 +50,8 @@ const FounderSection = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}>
 
-            <h3 className="font-heading text-3xl md:text-4xl font-bold uppercase mb-2">
-              Akash Lamba
+            <h3 className="font-heading text-3xl md:text-4xl font-bold uppercase mb-2">ASHUTOSH
+
             </h3>
             <p className="text-primary font-heading text-lg uppercase tracking-widest mb-6">
               Founder & Head Coach
