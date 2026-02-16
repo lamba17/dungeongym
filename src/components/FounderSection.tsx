@@ -40,7 +40,7 @@ const FounderSection = () => {
               <img
 
                 alt="Akash Lamba - Training action shot"
-                className="w-full h-80 lg:h-[500px] object-cover" src="/lovable-uploads/cff2f637-bf36-48d2-a4ae-35957727d6c1.png" />
+                className="w-full h-80 lg:h-[500px] object-cover" src="/lovable-uploads/518a9a83-422d-418e-b0ba-ce358a830c94.png" />
 
             </div>
           </motion.div>
