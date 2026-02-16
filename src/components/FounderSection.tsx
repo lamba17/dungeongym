@@ -14,8 +14,8 @@ const FounderSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+          className="text-center mb-16">
+
           <h2 className="font-heading text-4xl md:text-6xl font-bold uppercase tracking-tight mb-4">
             Meet The <span className="text-gradient">Founder</span>
           </h2>
@@ -27,29 +27,29 @@ const FounderSection = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex gap-4"
-          >
+            className="flex gap-4">
+
             <div className="flex-1 red-border-glow overflow-hidden">
               <img
-                src={founderPortrait}
+
                 alt="Akash Lamba - Founder portrait"
-                className="w-full h-80 lg:h-[500px] object-cover"
-              />
+                className="w-full h-80 lg:h-[500px] object-cover" src="/lovable-uploads/f4831424-e81a-4716-a96a-6902caceef03.png" />
+
             </div>
             <div className="flex-1 red-border-glow overflow-hidden">
               <img
                 src={founderAction}
                 alt="Akash Lamba - Training action shot"
-                className="w-full h-80 lg:h-[500px] object-cover"
-              />
+                className="w-full h-80 lg:h-[500px] object-cover" />
+
             </div>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
+            transition={{ duration: 0.6, delay: 0.4 }}>
+
             <h3 className="font-heading text-3xl md:text-4xl font-bold uppercase mb-2">
               Akash Lamba
             </h3>
@@ -67,8 +67,8 @@ const FounderSection = () => {
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default FounderSection;
