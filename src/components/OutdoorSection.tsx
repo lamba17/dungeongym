@@ -16,6 +16,7 @@ const OutdoorSection = () => {
 
   return (
     <section className="section-padding bg-background">
+      <div className="section-divider mb-20" />
       <div className="max-w-7xl mx-auto" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -23,31 +24,37 @@ const OutdoorSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
+          <span className="font-heading text-sm uppercase tracking-[0.3em] text-primary mb-4 block">
+            Beyond The Walls
+          </span>
           <h2 className="font-heading text-4xl md:text-6xl font-bold uppercase tracking-tight mb-4">
             Outdoor <span className="text-gradient">Activities</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto" />
         </motion.div>
 
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {activities.map((activity, i) => (
             <motion.div
               key={activity.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="relative image-hover-zoom h-64 md:h-80"
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              className="relative group image-hover-zoom rounded-xl overflow-hidden h-80 md:h-[420px] cursor-pointer"
             >
               <img
                 src={activity.image}
                 alt={activity.name}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-background/70 flex items-center justify-center flex-col p-6">
-                <h3 className="font-heading text-3xl md:text-4xl uppercase tracking-widest text-foreground mb-2">
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+              <div className="absolute inset-0 border border-transparent group-hover:border-primary/40 rounded-xl transition-all duration-500" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h3 className="font-heading text-2xl uppercase tracking-[0.1em] text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                   {activity.name}
                 </h3>
-                <p className="text-muted-foreground font-body text-center max-w-md">{activity.desc}</p>
+                <p className="text-foreground/60 font-body text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0">
+                  {activity.desc}
+                </p>
               </div>
             </motion.div>
           ))}

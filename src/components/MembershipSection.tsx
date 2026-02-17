@@ -38,7 +38,8 @@ const MembershipSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="plans" className="section-padding bg-secondary">
+    <section id="plans" className="section-padding bg-secondary/50">
+      <div className="section-divider mb-20" />
       <div className="max-w-7xl mx-auto" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -46,39 +47,47 @@ const MembershipSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
+          <span className="font-heading text-sm uppercase tracking-[0.3em] text-primary mb-4 block">
+            Choose Your Path
+          </span>
           <h2 className="font-heading text-4xl md:text-6xl font-bold uppercase tracking-tight mb-4">
             Membership <span className="text-gradient">Plans</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto" />
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`relative bg-card p-6 flex flex-col ${plan.popular ? "red-border-glow" : "border border-border"}`}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className={`relative bg-card rounded-xl p-7 flex flex-col transition-all duration-500 hover:-translate-y-2 ${
+                plan.popular
+                  ? "red-border-glow ring-1 ring-primary/30"
+                  : "border border-border hover:border-primary/30"
+              }`}
             >
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground font-heading text-xs uppercase tracking-widest px-4 py-1">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground font-heading text-xs uppercase tracking-[0.2em] px-5 py-1 rounded-full">
                   Most Popular
                 </div>
               )}
 
-              <h3 className="font-heading text-xl uppercase tracking-widest mb-4 text-foreground">
+              <h3 className="font-heading text-xl uppercase tracking-[0.15em] mb-5 text-foreground">
                 {plan.name}
               </h3>
-              <div className="mb-6">
+              <div className="mb-7">
                 <span className="font-heading text-4xl font-bold text-foreground">{plan.price}</span>
-                <span className="text-muted-foreground text-sm">{plan.period}</span>
+                <span className="text-muted-foreground text-sm ml-1">{plan.period}</span>
               </div>
 
-              <ul className="flex-1 space-y-3 mb-8">
+              <ul className="flex-1 space-y-3.5 mb-8">
                 {plan.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-muted-foreground text-sm font-body">
-                    <Check size={16} className="text-primary flex-shrink-0" />
+                  <li key={f} className="flex items-center gap-3 text-muted-foreground text-sm font-body">
+                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Check size={12} className="text-primary" />
+                    </div>
                     {f}
                   </li>
                 ))}
@@ -86,7 +95,11 @@ const MembershipSection = () => {
 
               <a
                 href="#contact"
-                className="block text-center bg-primary text-primary-foreground font-heading uppercase tracking-widest py-3 hover:bg-primary/90 transition-colors text-sm"
+                className={`block text-center font-heading uppercase tracking-[0.15em] py-3.5 rounded-lg transition-all duration-300 text-sm ${
+                  plan.popular
+                    ? "bg-primary text-primary-foreground red-glow red-glow-hover hover:brightness-110"
+                    : "border border-border text-foreground hover:border-primary hover:text-primary"
+                }`}
               >
                 Join Now
               </a>
