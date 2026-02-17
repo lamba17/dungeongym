@@ -28,36 +28,37 @@ const TransformationCard = ({ image, name, testimonial }: { image: string; name:
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div
         ref={containerRef}
-        className="relative h-72 md:h-96 cursor-col-resize overflow-hidden red-border-glow select-none"
+        className="relative h-80 md:h-[450px] cursor-col-resize overflow-hidden rounded-xl border border-border select-none group hover:border-primary/40 transition-colors duration-500"
         onMouseMove={(e) => handleMove(e.clientX)}
         onTouchMove={(e) => handleMove(e.touches[0].clientX)}
       >
         <img src={image} alt={`${name} transformation`} className="absolute inset-0 w-full h-full object-cover" />
         <div
-          className="absolute inset-0 bg-primary/20"
+          className="absolute inset-0 bg-primary/15"
           style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
         />
         <div
-          className="absolute top-0 bottom-0 w-0.5 bg-primary z-10"
+          className="absolute top-0 bottom-0 w-[2px] bg-primary z-10 shadow-[0_0_15px_hsl(358_95%_45%/0.5)]"
           style={{ left: `${sliderPos}%` }}
         >
-          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg">
             <span className="text-primary-foreground text-xs font-heading">↔</span>
           </div>
         </div>
-        <div className="absolute top-4 left-4 bg-background/80 px-3 py-1 font-heading text-xs uppercase tracking-widest">
+        <div className="absolute top-4 left-4 bg-background/80 backdrop-blur-sm px-4 py-1.5 rounded-full font-heading text-xs uppercase tracking-[0.2em]">
           Before
         </div>
-        <div className="absolute top-4 right-4 bg-primary/80 px-3 py-1 font-heading text-xs uppercase tracking-widest text-primary-foreground">
+        <div className="absolute top-4 right-4 bg-primary/90 backdrop-blur-sm px-4 py-1.5 rounded-full font-heading text-xs uppercase tracking-[0.2em] text-primary-foreground">
           After
         </div>
       </div>
-      <div className="text-center">
-        <h4 className="font-heading text-xl uppercase tracking-widest text-foreground">{name}</h4>
-        <p className="text-muted-foreground font-body italic mt-2">"{testimonial}"</p>
+
+      <div className="bg-card rounded-xl p-6 border border-border">
+        <h4 className="font-heading text-xl uppercase tracking-[0.15em] text-foreground mb-2">{name}</h4>
+        <p className="text-muted-foreground font-body italic leading-relaxed">"{testimonial}"</p>
       </div>
     </div>
   );
@@ -68,7 +69,8 @@ const TransformationSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding bg-secondary">
+    <section className="section-padding bg-secondary/50">
+      <div className="section-divider mb-20" />
       <div className="max-w-5xl mx-auto" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -76,19 +78,21 @@ const TransformationSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
+          <span className="font-heading text-sm uppercase tracking-[0.3em] text-primary mb-4 block">
+            Real Results
+          </span>
           <h2 className="font-heading text-4xl md:text-6xl font-bold uppercase tracking-tight mb-4">
             Real <span className="text-gradient">Transformations</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {transformations.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.2 }}
+              transition={{ duration: 0.6, delay: i * 0.2 }}
             >
               <TransformationCard {...t} />
             </motion.div>

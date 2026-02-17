@@ -1,59 +1,47 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import founderPortrait from "@/assets/founder-portrait.jpg";
-import founderAction from "@/assets/founder-action.jpg";
 
 const FounderSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding bg-secondary">
+    <section className="section-padding bg-secondary/50">
+      <div className="section-divider mb-20" />
       <div className="max-w-7xl mx-auto" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16">
-
-          <h2 className="font-heading text-4xl md:text-6xl font-bold uppercase tracking-tight mb-4">
-            Meet The <span className="text-gradient">Founder</span>
-          </h2>
-          <div className="w-20 h-1 bg-primary mx-auto" />
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex gap-4">
-
-            <div className="flex-1 red-border-glow overflow-hidden">
+            transition={{ duration: 0.8 }}
+            className="relative"
+          >
+            <div className="image-hover-zoom rounded-xl overflow-hidden">
               <img
-
-                alt="Akash Lamba - Founder portrait"
-                className="w-full h-80 lg:h-[500px] object-cover" src="/lovable-uploads/f4831424-e81a-4716-a96a-6902caceef03.png" />
-
+                alt="Ashutosh - Founder portrait"
+                className="w-full h-[500px] lg:h-[600px] object-cover"
+                src="/lovable-uploads/f4831424-e81a-4716-a96a-6902caceef03.png"
+              />
             </div>
-            
-
-
-
-
-
-
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-primary rounded-xl" />
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}>
-
-            <h3 className="font-heading text-3xl md:text-4xl font-bold uppercase mb-2">ASHUTOSH
-
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <span className="font-heading text-sm uppercase tracking-[0.3em] text-primary mb-4 block">
+              The Visionary
+            </span>
+            <h2 className="font-heading text-4xl md:text-6xl font-bold uppercase tracking-tight mb-2 leading-[1.05]">
+              Meet The{" "}
+              <span className="text-gradient">Founder</span>
+            </h2>
+            <h3 className="font-heading text-2xl md:text-3xl font-bold uppercase mb-2 mt-6">
+              ASHUTOSH
             </h3>
-            <p className="text-primary font-heading text-lg uppercase tracking-widest mb-6">
+            <p className="text-primary font-heading text-base uppercase tracking-[0.2em] mb-8">
               Founder & Head Coach
             </p>
             <p className="text-muted-foreground text-lg leading-relaxed font-body">
@@ -64,11 +52,12 @@ const FounderSection = () => {
               helping every member unlock their full potential. Under his guidance, 
               hundreds of members have achieved transformations they never thought possible.
             </p>
+            <div className="w-16 h-1 bg-primary mt-8" />
           </motion.div>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 };
 
 export default FounderSection;

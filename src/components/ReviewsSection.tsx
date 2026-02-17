@@ -41,28 +41,33 @@ const reviews = [
   },
 ];
 
-const ReviewCard = ({ review, index }: { review: typeof reviews[0]; index: number }) => {
+const ReviewCard = ({ review, featured = false }: { review: typeof reviews[0]; featured?: boolean }) => {
   const initials = review.name.split(" ").map((n) => n[0]).join("");
 
   return (
-    <div className="flex-shrink-0 w-[340px] bg-card border border-border p-6 flex flex-col gap-4 hover:border-primary/50 transition-colors">
-      {/* Google-style header */}
+    <div
+      className={`flex-shrink-0 w-[340px] rounded-xl p-6 flex flex-col gap-4 transition-all duration-500 ${
+        featured
+          ? "bg-card border border-primary/30 shadow-[0_0_30px_hsl(358_95%_45%/0.1)]"
+          : "bg-card border border-border hover:border-primary/30"
+      }`}
+    >
       <div className="flex items-center gap-1">
         {Array.from({ length: review.rating }).map((_, i) => (
           <Star key={i} size={16} className="fill-[hsl(45,100%,50%)] text-[hsl(45,100%,50%)]" />
         ))}
       </div>
 
-      <p className="text-foreground font-body leading-relaxed text-sm flex-1">
+      <p className="text-foreground/80 font-body leading-relaxed text-sm flex-1">
         "{review.text}"
       </p>
 
-      <div className="flex items-center gap-3 pt-2 border-t border-border">
-        <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+      <div className="flex items-center gap-3 pt-3 border-t border-border">
+        <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
           <span className="font-heading text-sm text-primary">{initials}</span>
         </div>
         <div>
-          <p className="font-heading text-sm uppercase tracking-wider text-foreground">{review.name}</p>
+          <p className="font-heading text-sm uppercase tracking-[0.1em] text-foreground">{review.name}</p>
           <p className="text-primary text-xs font-body">{review.result}</p>
         </div>
       </div>
@@ -81,7 +86,7 @@ const ReviewsSection = () => {
     if (!el) return;
     let animId: number;
     let pos = 0;
-    const speed = 0.5;
+    const speed = 0.4;
     const halfWidth = el.scrollWidth / 2;
 
     const animate = () => {
@@ -98,22 +103,25 @@ const ReviewsSection = () => {
 
   return (
     <section className="section-padding bg-background overflow-hidden" ref={ref}>
-      <div className="max-w-7xl mx-auto mb-12">
+      <div className="section-divider mb-20" />
+      <div className="max-w-7xl mx-auto mb-14">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 className="font-heading text-4xl md:text-6xl font-bold uppercase tracking-tight mb-4">
+          <span className="font-heading text-sm uppercase tracking-[0.3em] text-primary mb-4 block">
+            What Members Say
+          </span>
+          <h2 className="font-heading text-4xl md:text-6xl font-bold uppercase tracking-tight mb-6">
             Member <span className="text-gradient">Reviews</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto mb-4" />
           <div className="flex items-center justify-center gap-2 mb-2">
             {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} size={20} className="fill-[hsl(45,100%,50%)] text-[hsl(45,100%,50%)]" />
+              <Star key={i} size={22} className="fill-[hsl(45,100%,50%)] text-[hsl(45,100%,50%)]" />
             ))}
-            <span className="text-foreground font-heading text-lg ml-2">5.0</span>
+            <span className="text-foreground font-heading text-xl ml-3">5.0</span>
           </div>
           <p className="text-muted-foreground font-body text-sm">Based on 200+ Google Reviews</p>
         </motion.div>
@@ -126,11 +134,10 @@ const ReviewsSection = () => {
         ref={scrollRef}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="flex gap-6 overflow-hidden cursor-grab"
+        className="flex gap-5 overflow-hidden cursor-grab"
       >
-        {/* Duplicate reviews for seamless loop */}
         {[...reviews, ...reviews].map((review, i) => (
-          <ReviewCard key={i} review={review} index={i} />
+          <ReviewCard key={i} review={review} featured={i === 0} />
         ))}
       </motion.div>
     </section>

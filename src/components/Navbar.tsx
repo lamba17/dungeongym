@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -13,7 +14,14 @@ const navLinks = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const handleClick = (href: string) => {
     setOpen(false);
@@ -27,22 +35,31 @@ const Navbar = () => {
     }
   };
 
+  const navItemClass =
+    "relative font-heading text-sm uppercase tracking-[0.15em] text-foreground/70 hover:text-foreground transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-primary after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100";
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
-        <Link to="/" className="font-heading text-2xl font-bold tracking-wider uppercase">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-background/95 backdrop-blur-xl border-b border-border shadow-lg shadow-background/50"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        <Link to="/" className="font-heading text-2xl font-bold tracking-[0.15em] uppercase">
           <span className="text-gradient">Dungeon</span>{" "}
           <span className="text-foreground">Gym</span>
         </Link>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) =>
             link.href.startsWith("/#") ? (
               <button
                 key={link.label}
                 onClick={() => handleClick(link.href)}
-                className="font-heading text-sm uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+                className={navItemClass}
               >
                 {link.label}
               </button>
@@ -50,7 +67,7 @@ const Navbar = () => {
               <Link
                 key={link.label}
                 to={link.href}
-                className="font-heading text-sm uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+                className={navItemClass}
               >
                 {link.label}
               </Link>
@@ -59,7 +76,7 @@ const Navbar = () => {
           <a
             href="#plans"
             onClick={(e) => { e.preventDefault(); handleClick("/#plans"); }}
-            className="bg-primary text-primary-foreground font-heading text-sm uppercase tracking-widest px-5 py-2 hover:bg-primary/90 transition-colors"
+            className="btn-primary-premium text-xs py-2.5 px-6"
           >
             Join Now
           </a>
@@ -72,32 +89,46 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu */}
-      {open && (
-        <div className="md:hidden bg-background border-t border-border">
-          <div className="flex flex-col p-4 gap-4">
-            {navLinks.map((link) =>
-              link.href.startsWith("/#") ? (
-                <button
-                  key={link.label}
-                  onClick={() => handleClick(link.href)}
-                  className="font-heading text-sm uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors text-left"
-                >
-                  {link.label}
-                </button>
-              ) : (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  onClick={() => setOpen(false)}
-                  className="font-heading text-sm uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-background/98 backdrop-blur-xl border-t border-border overflow-hidden"
+          >
+            <div className="flex flex-col p-6 gap-5">
+              {navLinks.map((link) =>
+                link.href.startsWith("/#") ? (
+                  <button
+                    key={link.label}
+                    onClick={() => handleClick(link.href)}
+                    className="font-heading text-sm uppercase tracking-[0.15em] text-foreground/70 hover:text-primary transition-colors text-left"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    onClick={() => setOpen(false)}
+                    className="font-heading text-sm uppercase tracking-[0.15em] text-foreground/70 hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
+              <a
+                href="#plans"
+                onClick={(e) => { e.preventDefault(); handleClick("/#plans"); }}
+                className="btn-primary-premium text-center text-xs mt-2"
+              >
+                Join Now
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
