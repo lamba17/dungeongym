@@ -53,10 +53,10 @@ const AboutSection = () => {
 
             {/* Smaller overlapping accent image */}
             <div className="absolute -bottom-6 -left-6 w-40 md:w-52 image-hover-zoom rounded-xl overflow-hidden red-border-glow shadow-xl hidden md:block">
-              <img
-                src={gymInterior2}
-                alt="Dungeon Gym interior 2"
-                className="w-full h-32 md:h-40 object-cover" />
+              
+
+
+
             </div>
 
             {/* Exterior as small accent top-right */}
