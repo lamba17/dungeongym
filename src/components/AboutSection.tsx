@@ -59,10 +59,10 @@ const AboutSection = () => {
 
             </div>
             <div className="image-hover-zoom rounded-lg overflow-hidden">
-              <img
-                src={gymExterior}
-                alt="Dungeon Gym exterior"
-                className="w-full h-40 md:h-52 object-cover" />
+              
+
+
+
 
             </div>
           </motion.div>
