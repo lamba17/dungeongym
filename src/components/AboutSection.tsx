@@ -17,8 +17,8 @@ const AboutSection = () => {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
+            transition={{ duration: 0.8 }}>
+
             <span className="font-heading text-sm uppercase tracking-[0.3em] text-primary mb-4 block">
               Who We Are
             </span>
@@ -42,34 +42,34 @@ const AboutSection = () => {
             initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-2 gap-3"
-          >
+            className="grid grid-cols-2 gap-3">
+
             <div className="col-span-2 image-hover-zoom rounded-lg overflow-hidden">
-              <img
-                src={gymInterior1}
-                alt="Dungeon Gym interior 1"
-                className="w-full h-56 md:h-72 object-cover"
-              />
+              
+
+
+
+
             </div>
             <div className="image-hover-zoom rounded-lg overflow-hidden">
               <img
                 src={gymInterior2}
                 alt="Dungeon Gym interior 2"
-                className="w-full h-40 md:h-52 object-cover"
-              />
+                className="w-full h-40 md:h-52 object-cover" />
+
             </div>
             <div className="image-hover-zoom rounded-lg overflow-hidden">
               <img
                 src={gymExterior}
                 alt="Dungeon Gym exterior"
-                className="w-full h-40 md:h-52 object-cover"
-              />
+                className="w-full h-40 md:h-52 object-cover" />
+
             </div>
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default AboutSection;
