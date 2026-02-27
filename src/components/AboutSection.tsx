@@ -9,8 +9,8 @@ const AboutSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="px-6 py-28 md:px-10 md:py-36 lg:px-20 lg:py-44 bg-background">
-      <div className="section-divider mb-24" />
+    <section id="about" className="px-6 pt-16 pb-28 md:px-10 md:pt-20 md:pb-36 lg:px-20 lg:pt-24 lg:pb-44 bg-background">
+      <div className="section-divider mb-12" />
       <div className="max-w-7xl mx-auto" ref={ref}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Text */}
