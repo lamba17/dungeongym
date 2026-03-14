@@ -60,6 +60,36 @@ const DashboardHome = () => {
 
   return (
     <div className="space-y-6">
+      {/* Time Filter + KPI Cards */}
+      <div className="flex items-center justify-between mb-2">
+        <h2 className="font-heading text-xl text-foreground uppercase tracking-wider">Overview</h2>
+        <select
+          value={timeFilter}
+          onChange={(e) => setTimeFilter(Number(e.target.value))}
+          className="bg-secondary border border-border rounded-lg px-3 py-1.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+        >
+          <option value={1}>Last 30 Days</option>
+          <option value={3}>Last 3 Months</option>
+          <option value={6}>Last 6 Months</option>
+          <option value={12}>Last 12 Months</option>
+        </select>
+      </div>
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {[
+          { label: "Total Members", value: totalMembers, color: "text-foreground" },
+          { label: "Active Members", value: activeMembers, color: "text-green-400" },
+          { label: "Joined This Month", value: newThisMonth, color: "text-primary" },
+          { label: "Expired / Left", value: expired, color: "text-destructive" },
+        ].map((kpi) => (
+          <motion.div key={kpi.label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+            className="bg-card border border-border rounded-2xl p-5">
+            <p className="text-xs text-muted-foreground font-body uppercase tracking-wider">{kpi.label}</p>
+            <p className={`font-heading text-2xl ${kpi.color}`}>{kpi.value}</p>
+          </motion.div>
+        ))}
+      </div>
+
       {/* Row 1: Growth + Revenue */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <ChartCard title="Membership Growth">
