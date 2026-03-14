@@ -74,13 +74,12 @@ const Navbar = () => {
               </Link>
             )
           )}
-          <a
-            href="#plans"
-            onClick={(e) => { e.preventDefault(); handleClick("/#plans"); }}
+          <Link
+            to="/signup"
             className="btn-primary-premium text-xs py-2.5 px-6"
           >
             Join Now
-          </a>
+          </Link>
         </div>
 
         {/* Mobile toggle */}
