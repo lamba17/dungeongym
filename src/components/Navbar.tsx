@@ -118,13 +118,13 @@ const Navbar = () => {
                   </Link>
                 )
               )}
-              <a
-                href="#plans"
-                onClick={(e) => { e.preventDefault(); handleClick("/#plans"); }}
+              <Link
+                to="/signup"
+                onClick={() => setOpen(false)}
                 className="btn-primary-premium text-center text-xs mt-2"
               >
                 Join Now
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

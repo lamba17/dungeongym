@@ -1,5 +1,4 @@
-import { useMemo } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   LineChart, Line, BarChart, Bar, PieChart, Pie, Cell,
@@ -10,6 +9,7 @@ import {
   getMembersByMonth, getRevenueByMonth, getExpensesByMonth,
   getExpensesByCategory, getMemberStatusDistribution, filterByMonths,
 } from "@/lib/mockData";
+import { useAuth } from "@/contexts/AuthContext";
 
 const COLORS = ["hsl(358,95%,45%)", "hsl(358,60%,30%)", "hsl(0,0%,40%)", "hsl(358,80%,55%)", "hsl(0,0%,25%)"];
 
@@ -25,7 +25,17 @@ const ChartCard = ({ title, children }: { title: string; children: React.ReactNo
 );
 
 const DashboardHome = () => {
-  const { timeFilter } = useOutletContext<{ timeFilter: number }>();
+  const [timeFilter, setTimeFilter] = useState(12);
+  const { allMembers } = useAuth();
+
+  const totalMembers = allMembers.length;
+  const activeMembers = allMembers.filter((m) => m.status === "Active").length;
+  const newThisMonth = allMembers.filter((m) => {
+    const now = new Date();
+    const join = new Date(m.joinDate);
+    return join.getMonth() === now.getMonth() && join.getFullYear() === now.getFullYear();
+  }).length;
+  const expired = allMembers.filter((m) => m.status === "Expired").length;
 
   const data = useMemo(() => {
     const members = generateMembers();
