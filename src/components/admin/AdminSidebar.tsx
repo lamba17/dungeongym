@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, Users, IndianRupee, Receipt, BarChart3 } from "lucide-react";
+import { LayoutDashboard, Users, IndianRupee, Receipt, BarChart3, CreditCard } from "lucide-react";
 
 const links = [
   { to: "/admin/dashboard", icon: LayoutDashboard, label: "Dashboard" },
   { to: "/admin/members", icon: Users, label: "Members" },
   { to: "/admin/revenue", icon: IndianRupee, label: "Revenue" },
   { to: "/admin/expenses", icon: Receipt, label: "Expenses" },
+  { to: "/admin/payments", icon: CreditCard, label: "Payments" },
   { to: "/admin/analytics", icon: BarChart3, label: "Analytics" },
 ];
 

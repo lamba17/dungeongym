@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Plans", href: "/#plans" },
   { label: "Gallery", href: "/gallery" },
   { label: "Contact", href: "/#contact" },
+  { label: "Login", href: "/login" },
 ];
 
 const Navbar = () => {
@@ -73,13 +74,12 @@ const Navbar = () => {
               </Link>
             )
           )}
-          <a
-            href="#plans"
-            onClick={(e) => { e.preventDefault(); handleClick("/#plans"); }}
+          <Link
+            to="/signup"
             className="btn-primary-premium text-xs py-2.5 px-6"
           >
             Join Now
-          </a>
+          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -118,13 +118,13 @@ const Navbar = () => {
                   </Link>
                 )
               )}
-              <a
-                href="#plans"
-                onClick={(e) => { e.preventDefault(); handleClick("/#plans"); }}
+              <Link
+                to="/signup"
+                onClick={() => setOpen(false)}
                 className="btn-primary-premium text-center text-xs mt-2"
               >
                 Join Now
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
